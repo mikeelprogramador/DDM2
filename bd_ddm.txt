@@ -1,0 +1,36 @@
+create schema bd_ddm;
+use bd_ddm;
+create table tb_usuarios(
+id int not null,
+nombre varchar(60) not null,
+apellido varchar(60) not null,
+email varchar(260) not null,
+pasword varchar(100) not null,
+fecha_registro varchar(50) not null,
+primary key (email)
+);
+
+/*Consultas para ejecutar*/
+#drop table tb_usuarios;
+#truncate tb_usuarios;
+select * from tb_usuarios;
+#INSERT INTO tb_usuarios(documento, nombre,apellido,fecha_nacimiento)value('1','hola','quetal','14');
+
+create table tb_productos(
+id_producto varchar(10) not null,
+producto_nombre varchar(80) null,
+descripcion_producto varchar(160) null,
+caracteristicas_producto varchar(500) null,
+id_p_c varchar(50) null,
+cantidades int null,
+id_ofertas int null,
+img varchar(200) null,
+precio real null,
+primary key(id_producto)
+);	
+
+##truncate tb_productos;	
+##select img,producto_nombre,descripcion_producto from tb_productos;
+##select * from tb_productos where id_producto = 1;
+select * from tb_productos;	
+##drop table tb_product
