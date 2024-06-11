@@ -2,7 +2,7 @@
 
 class Vista{
     
-    public static function mostrarProductos($idUser = null){
+    public static function mostrarProductos(){
         include_once("modelo.php");
         include_once("../../cajon/bootstrap/bootstrap.php");
         $salida = "";
@@ -15,7 +15,7 @@ class Vista{
             $salida .= '<div class="card-body">';
             $salida .= '<h5 class="card-title">'.$fila['producto_nombre'].'</h5>';
             $salida .= '<p class="card-text">'.$fila['descripcion_producto'].'</p>';
-            $salida .= '<a href="../user/ddm.php?caht='.$idUser.'&seccion=producto&id='.$id.'" class="btn btn-primary">Comprar</a>';
+            $salida .= '<a href="../user/ddm.php?seccion=producto&id='.$id.'" class="btn btn-primary">Comprar</a>';
             $salida .= '</div>';
             $salida .= '</div>';
             $salida .= '</div>';

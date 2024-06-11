@@ -10,7 +10,6 @@ class cargarProducto {
             $consulta = Model::sqlCargarProducto($id,$nombre,$descrip,$caracter,$color,$cantidad,$oferta,$img,$precio);
             if($consulta){
                 $salida += 1;
-                header("location: admin.php?seccion=seccion1");
             }else{
                 $salida += 2;
             }
@@ -35,12 +34,15 @@ class cargarProducto {
     public static function img($img){
         $salida = "";
         $file = $img;
+        $tamaño = $file["size"];
         $nombre = $file["name"];
         $tipo = pathinfo($nombre, PATHINFO_EXTENSION); 
         $ruta_provicional = $file["tmp_name"];
         $carpeta = "../../fotos/";    
         if($tipo != 'jpg' && $tipo != 'png' && $tipo != 'gif'&& $tipo != 'tiff' && $tipo != 'psd'&& $tipo != 'bmp'){
-            echo "Error, el archivo tiene que ser jpg o png";
+            $salida = "0";
+        }else if($tamaño > 3*1024*1024){
+            $salida = "1";
         }else{
             $src = $carpeta.$nombre;
             move_uploaded_file($ruta_provicional,$src);

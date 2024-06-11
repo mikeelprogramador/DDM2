@@ -15,8 +15,7 @@ class Login {
         if( Login::encontarUsuario($email) == 0 ){
             $consulta = Model::sqlRegistarUsuario($id,$nombre,$apellido,$email,$newPwd);
             if($consulta){
-                $caht = id::encriptar($id);
-                header("location: view/user/ddm.php?caht=$caht");
+                $salida += 1;
             }else{
                 $salida += 0;//Si ocuurio un error al momento de registrar a la persona
             }
@@ -31,17 +30,17 @@ class Login {
         include_once("modelo.php");
         include_once("cajon/bootstrap/bootstrap.php");
         $salida = 0;
-        $estilo = new estilo($password);
+        $clave = new estilo($password);
         $newPwd = Login::pwd($email);
-        if($estilo->texto($password,$newPwd)){
+        if($clave->texto($password,$newPwd)){
             $consulta = Model::sqlInicoSesion($email,$newPwd);
-                if($consulta->num_rows > 0){
-                    $id = Login::buscarId($email);
-                    $caht = id::encriptar($id);
-                    header("location: view/user/ddm.php?caht=$caht");
+            while($fila= $consulta->fetch_array()){
+                if( $fila[0] > 0 ){
+                    $salida += 1;
                 }else{
-                    $salida += 0;// si ocurre un error al momenro de veridcar los datos
+                    $saldia += 0;// si ocurre un error al momenro de veridcar los datos
                 }
+            }
         }else{
             $salida += -1;// si la contraseña no es la misma que esta en la base de datos
         }
@@ -68,17 +67,17 @@ class Login {
         return $salida;
     }
 
-    private static function encontarUsuario(){
+    private static function encontarUsuario($email){
         include_once("modelo.php");
         $salida = 0;
-        $consulta = Model::sqlUsuario($email);
+        $consulta = Model::sqlUsuario($email,"ven");
         while($fila= $consulta->fetch_array()){
             $salida .= $fila[0];
         }
         return $salida;
     }
 
-    private static function buscarId($email){
+    public static function buscarId($email){
         include_once("modelo.php");
         $salida = 0; 
         $consulta = Model::sqlUsuario($email);

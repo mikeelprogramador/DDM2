@@ -18,7 +18,7 @@
 <div class="subContainer">
   <?php
     include_once("../../metodos/clas-view.php");
-    echo Vista::mostrarProductos( $_GET['caht']);
+    echo Vista::mostrarProductos();
   ?>
 </div>
 <br><br>

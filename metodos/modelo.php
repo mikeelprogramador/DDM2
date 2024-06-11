@@ -11,13 +11,17 @@ class Model {
 
     public static function sqlInicoSesion($email,$newPwd){
         include("bd-conect/inclucion-bd.php");
-        $sql = "select * from tb_usuarios where email='$email' and pasword='$newPwd'";
+        $sql = "select count(*) from tb_usuarios where email='$email' and pasword='$newPwd'";
         return $resulatdo = $conexion->query($sql);
     }
 
-    public static function sqlUsuario($email){
+    public static function sqlUsuario($email,$ban = null){
         include("bd-conect/inclucion-bd.php");
-        $sql = "select * from tb_usuarios where email='$email'";
+        if( $ban == null )$sql = "select * ";
+        else{
+            $sql = "select count(*) ";
+        }
+        $sql .= "from tb_usuarios where email='$email'";
         return $resulatdo = $conexion->query($sql);
     }
 
