@@ -39,7 +39,6 @@ if(isset($_POST['enviar'])){
     if( $nowProducto == 0 ){
       echo "El codigo de este producto ya se encuntra creado";
     }if( $nowProducto == 1 ){
-      header("location: admin.php?seccion=seccion1");
       echo "El producto se ha cardo exitosamente";
     }if( $nowProducto == 2 ){
       echo "Hubo un error al subir el archivo";

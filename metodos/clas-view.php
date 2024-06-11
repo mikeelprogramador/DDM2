@@ -23,4 +23,22 @@ class Vista{
         }
         return $salida;
     }
+
+    public static function buscarProducto($text = null){
+        include_once("modelo.php");
+        $salida = "";
+        $consulta = Model::sqlMostrarProductos($text);
+        while($fila=$consulta->fetch_array()){
+            $salida .= $fila[0]."<br>";
+            $salida .= $fila[1]."<br>";
+            $salida .= $fila[2]."<br>";
+            $salida .= $fila[3]."<br>";
+            $salida .= $fila[4]."<br>";
+            $salida .= $fila[5]."<br>";
+            $salida .= $fila[6]."<br>";
+            $salida .= $fila[7]."<br>";
+            $salida .= $fila[8]."<br>";
+        }
+        return $salida;
+    }
 }
