@@ -37,7 +37,6 @@ class Vista{
             $salida .= $fila[5]."<br>";
             $salida .= $fila[6]."<br>";
             $salida .= $fila[7]."<br>";
-            $salida .= $fila[8]."<br>";
         }
         return $salida;
     }
