@@ -2,11 +2,11 @@
 
 class Vista{
     
-    public static function mostrarProductos(){
+    public static function mostrarProductos($text = null){
         include_once("modelo.php");
         include_once("../../cajon/bootstrap/bootstrap.php");
         $salida = "";
-        $consulta = Model::sqlMostrarProductos();
+        $consulta = Model::sqlMostrarProductos($text);
         while($fila = $consulta->fetch_assoc()){
             $id = id::encriptar($fila['id_producto']);
             $salida .= '<div class="home">';

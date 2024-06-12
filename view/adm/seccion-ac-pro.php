@@ -1,6 +1,6 @@
+<label for="">Buscar</label>
+<input type="text" placeholder="Buscar producto...." name="search" oninput="busquedaAdm(event)">
 
-<input type="text" placeholder="Buscar producto...." name="search" oninput="busqueda(event)">
-<input type="button" value="Buscar" >
 
 
 <div class="search" id="search">
