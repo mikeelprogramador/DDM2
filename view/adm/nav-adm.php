@@ -27,10 +27,8 @@
             Productos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="admin.php?seccion=seccion-ag-pro">Agregar Productos</a></li>
-            <li><a class="dropdown-item" href="admin.php?seccion=seccion-ac-pro"> Actualizar Productos</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="admin.php?seccion=seccion-eli-pro">Eliminar productos</a></li>
+            <li><a class="dropdown-item" href="admin.php?seccion=seccion-ag-pro">Agregar productos</a></li>
+            <li><a class="dropdown-item" href="admin.php?seccion=seccion-ac-pro"> Acerca de los productos</a></li>
           </ul>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +51,16 @@
             <li><a class="dropdown-item" href="#">Buscar Ofertas</a></li>
           </ul>
         </li>
-
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Perfil
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+            <li><a class="dropdown-item" href="#"> Acerca de los productos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="admin.php?seccion=out">Cerrar sesion</a></li>
+          </ul>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Bienvenido a DDM</a>
         </li>
@@ -74,7 +81,7 @@
 
 </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../js/target.js"></script>
     <script src="../../js/productos.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

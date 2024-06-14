@@ -4,14 +4,14 @@ class Model {
 
     public static function sqlRegistarUsuario($id,$nombre,$apellido,$email,$newPwd){
         include("bd-conect/inclucion-bd.php");
-        $sql = "INSERT INTO tb_usuarios(id,nombre,apellido,email,pasword,fecha_registro) ";
-        $sql .= "VALUES($id,'$nombre','$apellido','$email','$newPwd',now())";
+        $sql = "INSERT INTO tb_usuarios(id,nombre,apellido,email,pasword,fecha_registro,cater_user) ";
+        $sql .= "VALUES($id,'$nombre','$apellido','$email','$newPwd',now(),'user1')";
         return $resultado = $conexion->query($sql);
     }
 
     public static function sqlInicoSesion($email,$newPwd){
         include("bd-conect/inclucion-bd.php");
-        $sql = "select count(*) from tb_usuarios where email='$email' and pasword='$newPwd'";
+        $sql = "select (select cater_user from tb_usuarios where email = '$email' and pasword = '$newPwd' ), count(*) from tb_usuarios";
         return $resulatdo = $conexion->query($sql);
     }
 
@@ -31,11 +31,11 @@ class Model {
         return $resulatdo = $conexion->query($sql);
     }
 
-    public static function sqlCargarProducto($id,$nombre,$descrip,$caracter,$color,$cantidad,$oferta,$img,$precio){
+    public static function sqlCargarProducto($id,$nombre,$descrip,$caracter,$cantidad,$oferta,$img,$precio,$color){
         include("bd-conect/inclucion-bd.php");
         $sql = "INSERT INTO tb_productos";
-        $sql .= "(id_producto,producto_nombre,descripcion_producto,caracteristicas_producto,id_p_c,cantidades,id_ofertas,img,precio)";
-        $sql.= "VALUE('$id','$nombre','$descrip','$caracter','$color','$cantidad','$oferta','$img','$precio')";
+        $sql .= "(id_producto,producto_nombre,descripcion_producto,caracteristicas_producto,cantidades,id_ofertas,img,precio,color)";
+        $sql.= "VALUE('$id','$nombre','$descrip','$caracter','$cantidad','$oferta','$img','$precio','$color')";
         return $resulatdo = $conexion->query($sql);
     }
 
@@ -60,6 +60,19 @@ class Model {
             }
         }
         return $resulatdo = $conexion->query($sql);
+    }
+
+    public static function sqlEliminarProducto($id){
+        include("bd-conect/inclucion-bd.php"); 
+        Model::sqlEliminarProductoCategoria($id);
+        $sql = "DELETE FROM tb_productos WHERE id_producto = '$id'";
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlEliminarProductoCategoria($id){
+        include("bd-conect/inclucion-bd.php"); 
+        $sql = "DELETE FROM tb_categoriasProducto WHERE id_producto =  '$id'";
+        $resultado = $conexion->query($sql);
     }
 
 }

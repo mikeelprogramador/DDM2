@@ -15,12 +15,12 @@ class Login {
         if( Login::encontarUsuario($email) == 0 ){
             $consulta = Model::sqlRegistarUsuario($id,$nombre,$apellido,$email,$newPwd);
             if($consulta){
-                $salida += 1;
+                $salida = 1;
             }else{
-                $salida += 0;//Si ocuurio un error al momento de registrar a la persona
+                $salida+= 0;//Si ocuurio un error al momento de registrar a la persona
             }
         }else{
-            $salida += -1;//Si los datos que la persoan ingreso ya existen
+            $salida = -1;//Si los datos que la persoan ingreso ya existen
         }
         return $salida; 
     }
@@ -35,14 +35,17 @@ class Login {
         if($clave->texto($password,$newPwd)){
             $consulta = Model::sqlInicoSesion($email,$newPwd);
             while($fila= $consulta->fetch_array()){
-                if( $fila[0] > 0 ){
-                    $salida += 1;
+                if( $fila[1] > 0 ){
+                    $salida = 1;
+                    if( $fila[0] == "0user"){
+                        $salida = 2; 
+                    }
                 }else{
-                    $saldia += 0;// si ocurre un error al momenro de veridcar los datos
+                    $saldia = 0;// si ocurre un error al momenro de veridcar los datos
                 }
             }
         }else{
-            $salida += -1;// si la contraseña no es la misma que esta en la base de datos
+            $salida = -1;// si la contraseña no es la misma que esta en la base de datos
         }
         return $salida;
     }

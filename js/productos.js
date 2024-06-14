@@ -51,3 +51,49 @@ function pulsar(event){
         $("#boton").click();
     }
 }
+
+function eliminar(id){;
+    var param = {
+        'id': id
+    }
+
+    $.ajax({
+        data: param,
+        url: 'buscar.php',
+        datatype: 'html',
+        method: 'get',
+        success: function(respuesta){
+           ( respuesta == 1)?window.location.href = "admin.php?seccion=seccion-ac-pro":" "
+        },
+        error: function(xhr,status,error){
+            console.log(error);
+        }
+
+    })
+
+}
+
+function decision(id){
+    Swal.fire({
+        title: "Borrar producto" ,
+        text: "¿Estas seguro de eliminar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "¡Eliminado!",
+            text: "El producto se ha eliminado correctamente",
+            icon: "success",
+          }).then((result) => {
+            if(result.isConfirmed){
+                eliminar(id);
+            }
+          });
+          
+        }
+      });
+}

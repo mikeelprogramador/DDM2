@@ -1,4 +1,12 @@
 <?php
+  if(! isset($_SESSION)) session_start();
+  if(! isset($_SESSION['id'])){
+    header("location: ../../index.php");
+  }else{
+    if($_SESSION['id'] == ""){
+      header("location: ../../index.php");
+    }
+  }
 
   $seccion = "seccion1"; //Sección por defecto.
 
@@ -27,7 +35,7 @@ if(isset($_POST['enviar'])){
     $filas =  $_FILES["card-img"];
     $img  = cargarProducto::img($filas);
     if( $img == "0" ){
-      echo "Error, el archivo tiene que ser jpg o png";
+      echo "Error, el archivo no cumple los estandares";
     }if( $img == "1" ){
       echo "Error, la imagen supera los limites establecidos";
     }
@@ -35,7 +43,7 @@ if(isset($_POST['enviar'])){
   if( $img == "0" || $img =="1" ){
 
   }else{
-    $nowProducto = cargarProducto::cargarProducto($id,$nombre,$descrip,$caracter,$color,$cantidad,$ofertas,$img,$precio);
+    $nowProducto = cargarProducto::cargarProducto($id,$nombre,$descrip,$caracter,$cantidad,$ofertas,$img,$precio,$color);
     if( $nowProducto == 0 ){
       echo "El codigo de este producto ya se encuntra creado";
     }if( $nowProducto == 1 ){
