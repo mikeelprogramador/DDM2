@@ -17,7 +17,7 @@ class Login {
             if($consulta){
                 $salida = 1;
             }else{
-                $salida+= 0;//Si ocuurio un error al momento de registrar a la persona
+                $salida = 0;//Si ocuurio un error al momento de registrar a la persona
             }
         }else{
             $salida = -1;//Si los datos que la persoan ingreso ya existen

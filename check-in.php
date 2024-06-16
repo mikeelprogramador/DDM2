@@ -39,10 +39,25 @@
         <a href="login.php">Iniciar sesión</a>
     </div>
    
+    <div class="alertas">
+    <?php
+        if( isset($_GET['men'])){
+          if( $_GET['men'] == "-1error" || $_GET['men'] == "0error" ){
+            ?><script> 
+              window.onload = function() {
+                verificacion('<?php echo $_GET['men']; ?>');
+              };
+            </script><?php
+          }
+        }
+      ?>
+  </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- Conexión del script. -->
 <script src="js/contra_registro.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/contra.js"></script>
 </body>
 </html>

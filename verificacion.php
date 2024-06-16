@@ -1,7 +1,7 @@
 <?php
 include("metodos/clas-login.php");
 if( ! isset($_SESSION)) session_start();
-if( ! isset($_SESISION['id'])) $_SESSION['id'] = "";
+if( ! isset($_SESSION['id'])) $_SESSION['id'] = "";
 
 if( isset($_GET['log'])){
 
@@ -17,10 +17,10 @@ if( isset($_GET['log'])){
             header("location: view/user/ddm.php?");
         }
         if( $login == 0 ){
-            echo "Ups ocurrio un error al momento de verificar los datos, intenta más tarde";
+            header("location: login.php?men=error".$login."");
         }
         if(  $login == -1 ){
-            echo "La contraseña o el correo no conside intenta nuevamente";
+            header("location: login.php?men=error".$login."");
         }
         if( $login == 2 ){
             $_SESSION['id'] = $id;
@@ -37,10 +37,10 @@ if( isset($_GET['log'])){
             header("location: view/user/ddm.php?");
         }
         if( $registro == 0){
-            echo "Ups ah ocurrido un erro al crear el usuario, verifca que los datos sean correctos";
+            header("location: check-in.php?men=".$registro."error");
         }
         if( $registro == -1 ){
-            echo "Estos datos ya le pertenecen a un usuario, verifica nuevamente";
+            header("location: check-in.php?men=".$registro."error");
         }
     }
 }

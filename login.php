@@ -31,14 +31,32 @@ gtag('config', 'G-05CZXNWMZE');
                 <img id="toggle-password" class="toggle-password" src="img/ojo1.png" alt="Mostrar contraseña" style="width: 10%;">
             </div>
             <br><br>
-            <input type="submit" name="enviar" value="Iniciar Sesión">
+            <input type="submit" name="enviar" value="Iniciar Sesión" >
         </form>
         <p>¿No te has registrado?</p>
         <a href="check-in.php">Registrar</a>
     </div>
 
+  <div class="alertas">
+    <?php
+        if( isset($_GET['men'])){
+          if( $_GET['men'] == "error-1" || $_GET['men'] == "error-0" ){
+            ?><script> 
+              window.onload = function() {
+                verificacion('<?php echo $_GET['men']; ?>');
+              };
+            </script><?php
+          }
+        }
+      ?>
+  </div>
+    
+  
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- Conexión del script. -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/contra.js"></script>
 </body>
 </html>
