@@ -28,11 +28,16 @@ function verificacion(data = null){
     if( data === "0error" ){
         texto = "Ups ah ocurrido un erro al crear el usuario, verifca que los datos sean correctos";
     }
+    //Mensaje de alerta
     Swal.fire({
         icon: "error",
         title: "Oops...",
         text: texto ,
         //footer: '<a href="#">Why do I have this issue?</a>'
+      }).then((result) => {
+        if(result.isConfirmed){
+            window.location.href = 'index.php';
+        }
       });
 }
   

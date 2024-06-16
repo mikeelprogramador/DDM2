@@ -18,7 +18,7 @@
 
 
 <div class="agr">
-<form class="container mt-4" action="admin.php?" method="post" enctype="multipart/form-data">
+<form class="container mt-4" action="buscar.php?" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name-pro" class="form-label">Nombre del producto</label>
         <input type="text" class="form-control" id="name-pro" name="name-pro" placeholder="Nombre del producto" oninput="cardstring(event,'title')">
@@ -39,4 +39,28 @@
 </form>
 </div>
 <br>
+
+<?php
+    if( isset($_GET['men'])){
+        if( $_GET['men'] == "2" || $_GET['men'] == "0" ){
+        ?><script> 
+            window.onload = function() {
+            alertError('<?php echo $_GET['men']; ?>');
+            };
+        </script><?php
+        }if( $_GET['men'] == "1" ){
+        ?><script> 
+            window.onload = function() {
+            confirmacion('<?php echo $_GET['men']; ?>');
+            };
+        </script><?php
+        }if( $_GET['men'] == "img0" || $_GET['men'] == "img1" ){
+        ?><script> 
+            window.onload = function() {
+            alertError('<?php echo $_GET['men']; ?>');
+            };
+            </script><?php
+        }
+    }
+?>
 

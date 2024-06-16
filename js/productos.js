@@ -75,7 +75,7 @@ function eliminar(id){;
 
 function decision(id){
     Swal.fire({
-        title: "Borrar producto" ,
+        title: "!Borrar producto¡" ,
         text: "¿Estas seguro de eliminar el producto?",
         icon: "warning",
         showCancelButton: true,
@@ -86,7 +86,7 @@ function decision(id){
         if (result.isConfirmed) {
           Swal.fire({
             title: "¡Eliminado!",
-            text: "El producto se ha eliminado correctamente",
+            text: "Presiona OK para confirmar",
             icon: "success",
           }).then((result) => {
             if(result.isConfirmed){

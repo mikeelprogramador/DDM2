@@ -39,13 +39,13 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Usuario
+            Categorias
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="ddm.php?seccion=perfil">Perfil</a></li>
-            <li><a class="dropdown-item" href="#"> Compras</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="out.php">Cerrar sesión</a></li>
+            <li><a class="dropdown-item" href="#">Categoria1</a></li>
+            <li><a class="dropdown-item" href="#"> Categoria2</a></li>
+            <li><a class="dropdown-item" href="#">Categoria3</a></li>
+            <li><a class="dropdown-item" href="#">Categoria4</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -56,13 +56,13 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
+            Usuario
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Categoria1</a></li>
-            <li><a class="dropdown-item" href="#"> Categoria2</a></li>
-            <li><a class="dropdown-item" href="#">Categoria3</a></li>
-            <li><a class="dropdown-item" href="#">Categoria4</a></li>
+            <li><a class="dropdown-item" href="ddm.php?seccion=perfil">Perfil</a></li>
+            <li><a class="dropdown-item" href="#"> Compras</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="out.php">Cerrar sesión</a></li>
           </ul>
         </li>
         <li class="nav-item">
