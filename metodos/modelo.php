@@ -53,7 +53,7 @@ class Model {
         if( $search != null ){
             $sql .= "where ";
             for($i = 0; $i < count($palabra); $i++){
-                $sql .= "(producto_nombre like '%".$palabra[$i]."%' or descripcion_producto like '%".$palabra[$i]."%')";       
+                $sql .= "(producto_nombre like '%".$palabra[$i]."%' or descripcion_producto like '%".$palabra[$i]."%' or id_producto like '%".$palabra[$i]."%')";       
                 if($i != count($palabra)-1){
                     $sql .= " and ";
                 }

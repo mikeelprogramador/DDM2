@@ -21,7 +21,7 @@ function alertError(option = null ){
         text = "El codigo de este producto ya se encuntra creado";
     }
     if( option == "2" ){
-        text =  "Hubo un error al subir el archivo";
+        text =  "Hubo un error al crear el producto";
     }
     //Mensaje de error de la imagen 
     if( option == "img0" ){

@@ -1,7 +1,9 @@
 <?php
 
 class Vista{
-    
+    /**
+     * Funcion para buscar y moestar la flast card de los productos
+     */
     public static function mostrarProductos($text = null){
         include_once("modelo.php");
         include_once("../../cajon/bootstrap/bootstrap.php");
@@ -23,9 +25,12 @@ class Vista{
         }
         return $salida;
     }
-
+    /**
+     * Funcion de peticion asincrona para busacr los productos en tiempo real
+     */
     public static function buscarProducto($text = null){
         include_once("modelo.php");
+        include_once("../../cajon/bootstrap/bootstrap.php");
         $salida = "<div class='table-responsive'>"; // Añade un contenedor para la tabla responsiva
         $salida .= "<table class='table table-striped table-hover'>"; // Añade clases de Bootstrap para la tabla
         $salida .= "<thead class='thead-dark'><tr>";
@@ -42,16 +47,17 @@ class Vista{
     
         $consulta = Model::sqlMostrarProductos($text);
         while($fila = $consulta->fetch_array()){
+            $id = id::encriptar($fila[0]);
             $salida .= "<tr>";
             $salida .= "<td>{$fila[0]}</td>";
             $salida .= "<td>{$fila[1]}</td>";
             $salida .= "<td>{$fila[2]}</td>";
             $salida .= "<td>{$fila[3]}</td>";
+            $salida .= "<td>COP $ {$fila[7]}</td>";
             $salida .= "<td>{$fila[4]}</td>";
-            $salida .= "<td>{$fila[5]}</td>";
             $salida .= "<td><img src='{$fila[6]}' alt='Imagen del producto' class='img-fluid img-thumbnail' style='max-width: 100px; height: auto;'></td>"; // Imagen con clases de Bootstrap y estilos personalizados
-            $salida .= "<td><button type='button'>Editar</button></td>"; // Botón de edición con clase de Bootstrap
-            $salida .= "<td><button type='button' onclick='decision($fila[0])'>Eliminar</button></td>"; 
+            $salida .= "<td><a href='admin.php?seccion=edit&data=$id'><button type='button'>Editar</button></a></td>"; // Botón de edición con clase de Bootstrap
+            $salida .= "<td><button type='button' onclick='decision(\"{$fila[0]}\")'>Eliminar</button></td>"; 
             $salida .= "</tr>";
         }
         $salida .= "</tbody></table>";
