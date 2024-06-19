@@ -38,10 +38,19 @@ class Model {
         $sql.= "VALUE('$id','$nombre','$descrip','$caracter','$cantidad','$oferta','$img','$precio','$color')";
         return $resulatdo = $conexion->query($sql);
     }
-
-    public static function sqlverificarProducto($id){
+    /**
+     * Metodo para verificar si un producto y para mostrar un producto 
+     * param @palabra la palabra clave para buscar o mostrar
+     */
+    public static function sqlverificarProducto($id,$palabra){
         include("bd-conect/inclucion-bd.php");
-        $sql = "select count(*) from tb_productos where id_producto = '$id'";
+        if( $palabra == "mostrar" ){
+            $sql = "select * ";
+        }
+        if( $palabra == "buscar" ){
+            $sql = "select count(*) ";
+        }
+        $sql .= "from tb_productos where id_producto = '$id'";
         return $resulatdo = $conexion->query($sql);
     }
 
@@ -65,6 +74,7 @@ class Model {
     public static function sqlEliminarProducto($id){
         include("bd-conect/inclucion-bd.php"); 
         Model::sqlEliminarProductoCategoria($id);
+        Model::sqlEliminarComentario($id);
         $sql = "DELETE FROM tb_productos WHERE id_producto = '$id'";
         return $resultado = $conexion->query($sql);
     }
@@ -74,5 +84,41 @@ class Model {
         $sql = "DELETE FROM tb_categoriasProducto WHERE id_producto =  '$id'";
         $resultado = $conexion->query($sql);
     }
+    /**
+     * comentra bien este metodo, 4 parametros
+     * param @$id  codigo del producto
+     * param @$put clave de paso 
+     * param @id_comen codigo comentario
+     * param @id_user codigo usuario
+     */
+    public static function sqlEliminarComentario($id = null, $put = null, $id_comen = null, $id_user = null){
+        include("bd-conect/inclucion-bd.php");
+        $sql = "DELETE FROM tb_comentarios ";
+        if( $put == "eliminar" ){
+            $sql .= "where id_comentario = '$id_comen' and id_usuario = '$id_user' ";
+        }
+        if( $id != null){
+            $sql .= "where id_producto = '$id'";
+        }
+        return $resultado = $conexion->query($sql);
+    }
+
+    public static function sqlComentarios($comentario,$id_producto,$id_usuario){
+        include("bd-conect/inclucion-bd.php"); 
+        $sql = "INSERT INTO tb_comentarios(comentario,fechaComentario,id_producto,id_usuario)";
+        $sql .= "value('$comentario',now(),'$id_producto','$id_usuario')";
+        return $resulatdo = $conexion->query($sql);
+    }
+
+    public static function sqlViewComentarios($id_pro){
+        include("bd-conect/inclucion-bd.php"); 
+        $sql = "select tb_usuarios.nombre,comentario,fechaComentario,tb_usuarios.id,id_comentario ";
+        $sql .= "from tb_comentarios "; 
+        $sql .= "inner join tb_usuarios on tb_comentarios.id_usuario = tb_usuarios.id ";
+        $sql .= "inner join tb_productos on tb_comentarios.id_producto = tb_productos.id_producto ";
+        $sql .= "where tb_productos.id_producto = '$id_pro' ";
+        return $resultado = $conexion->query($sql);
+    }
+
 
 }

@@ -70,6 +70,37 @@ LOCK TABLES `tb_categoriasproducto` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_comentarios`
+--
+
+DROP TABLE IF EXISTS `tb_comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_comentarios` (
+  `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
+  `comentario` varchar(600) NOT NULL,
+  `fechaComentario` varchar(20) NOT NULL,
+  `id_producto` varchar(10) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id_comentario`),
+  KEY `id_producto` (`id_producto`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `tb_comentarios_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`),
+  CONSTRAINT `tb_comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_comentarios`
+--
+
+LOCK TABLES `tb_comentarios` WRITE;
+/*!40000 ALTER TABLE `tb_comentarios` DISABLE KEYS */;
+INSERT INTO `tb_comentarios` VALUES (1,'Este producto es muy bueno hace mucha musica genial','2024-06-18 06:57:35','fku6',2),(2,'Este producto esta muy caro no lo compren ','2024-06-18 07:13:33','FKt4',2);
+/*!40000 ALTER TABLE `tb_comentarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_productos`
 --
 
@@ -96,7 +127,7 @@ CREATE TABLE `tb_productos` (
 
 LOCK TABLES `tb_productos` WRITE;
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
-INSERT INTO `tb_productos` VALUES ('FKt4','cepillo cepillin','','',0,0,'../../fotos/images (1).jfif','525.000,00',''),('FKt5','cepillo cepillin','','',50,0,'../../fotos/images (1).jfif','2.500,00','');
+INSERT INTO `tb_productos` VALUES ('FKt4','cepillo cepillin','','',0,0,'../../fotos/images (1).jfif','525.000,00',''),('FKt5','cepillo cepillin','','',50,0,'../../fotos/images (1).jfif','2.500,00',''),('fku6','pito','es bonito','hace musica',10,0,'../../fotos/descarga.jfif','6.500,00','negro');
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +146,7 @@ CREATE TABLE `tb_usuarios` (
   `pasword` varchar(100) NOT NULL,
   `fecha_registro` varchar(50) NOT NULL,
   `cater_user` varchar(10) NOT NULL,
-  PRIMARY KEY (`email`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -125,7 +156,7 @@ CREATE TABLE `tb_usuarios` (
 
 LOCK TABLES `tb_usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
-INSERT INTO `tb_usuarios` VALUES (2,'juan','castañeda','juan','$2y$10$y/q4YGJX0f5EL4kV6s/3Y.nec1XmoWwXGocJu5WpT5L64D5HPdJAm','2024-06-14 07:15:53','user1'),(3,'memo ','tilas','memo@gmail.com','$2y$10$LJkWjli1gEtdKYhoF.26NeVtMwySc5cYH2vyHaBhfRIW6c9m.5MPe','2024-06-14 11:58:53','user1'),(1,'Mike','Sánchez','mike','$2y$10$zC1tdvET4aY86Z7BIDsGdOzd8PO17HBrBczRprwQBxuGr.SRpC5C2','2024-06-14 07:01:46','0user');
+INSERT INTO `tb_usuarios` VALUES (1,'mike','sanchez','mike','$2y$10$ft42yWuI8r6VqUuwUPyrQOENYdA0dfrPGuuz6p5h3xHbqWPgEdce2','2024-06-17 10:02:42','0user'),(2,'juan ','ramos','juan','$2y$10$xAZK8g9T40.wkETuqYoH5eIl43NL4EZpQsCnmSn98tNF/2o54457O','2024-06-17 10:03:05','user1');
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -138,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17  8:11:26
+-- Dump completed on 2024-06-18  7:29:28

@@ -20,7 +20,7 @@ class cargarProducto {
     public static function verificarProducto($id){
         include_once("modelo.php");
         $salida = 0;
-        $consulta = Model::sqlverificarProducto($id);
+        $consulta = Model::sqlverificarProducto($id,"buscar");
         while($fila=$consulta->fetch_array()){
             if($fila[0] == 1){
                 $salida += 1;

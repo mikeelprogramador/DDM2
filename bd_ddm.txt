@@ -10,7 +10,7 @@ email varchar(260) not null,
 pasword varchar(100) not null,
 fecha_registro varchar(50) not null,
 cater_user varchar(10) not null,
-primary key (email)
+primary key (id)
 );
 
 
@@ -57,24 +57,40 @@ foreign key(id_categoria) references tb_categorias(id_categoria),
 primary key(id_p_c)
 );	
 
+/* Tabla de comentarios */
+create table tb_comentarios(
+id_comentario int auto_increment,
+comentario varchar(600) not null,
+fechaComentario varchar(20) not null,
+id_producto varchar(10) not null,
+id_usuario int not null,
+primary key(id_comentario),
+foreign key(id_producto) references tb_productos(id_producto),
+foreign key(id_usuario) references tb_usuarios(id)
+);
+
+
 
 /*Select*/
 select * from tb_usuarios ;		
 select * from tb_productos;
 select * from tb_categorias;
-select * from tb_categoriasProducto;	
+select * from tb_categoriasProducto;
+select * from tb_comentarios;		
 
 /*borrar datos de las tablas*/
 truncate tb_usuarios ;	
 truncate tb_productos;
 truncate tb_categorias;
 truncate tb_categoriasProducto;
+truncate tb_comentarios;
 
 
 /*borrar tablas*/
 #drop table tb_usuarios; 
-drop table tb_categoriasProducto; 
-drop table tb_productos; 
+#drop table tb_categoriasProducto; 
+#drop table tb_productos;
+#drop table tb_comentarios; 
 
 /*Consultas */
 select *  
@@ -86,5 +102,4 @@ inner join tb_categorias as t3 on t1.id_categoria = t3.id_categoria;
 select (select cater_user from tb_usuarios where email = '' and pasword = '' ), count(*) from tb_usuarios;
 
 set sql_safe_updates = 1;
-
 

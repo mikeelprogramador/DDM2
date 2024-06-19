@@ -24,8 +24,11 @@ if(isset($_POST['enviar'])){
     $color = $_POST['color-pro'];
     $cantidad = $_POST['cantidad-pro'];
     $ofertas = $_POST['oferta-pro'];
-    (isset($_POST['precio']) ?$precio = number_format($_POST['precio-pro'], 2, ',', '.'): $precio = 0 );
-    $img = '';
+    if($_POST['precio-pro'] > 0){
+      $precio = number_format($_POST['precio-pro'], 2, ',', '.');
+    }else{
+      $precio = 0;
+    }
   
     if(isset($_FILES['card-img'])){
       $files =  $_FILES['card-img'];

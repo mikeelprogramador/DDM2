@@ -15,10 +15,11 @@ class Vista{
             $salida .= '<div class="card" style="width: 18rem;">';
             $salida .= '<img src="'.$fila['img'].'" class="card-img-top" alt="La imagen no ha sido ubicado">';
             $salida .= '<div class="card-body">';
+            $salida .= '<h5 class="card-text">COP $ '.$fila['precio'].'</h5>';
             $salida .= '<h5 class="card-title">'.$fila['producto_nombre'].'</h5>';
             $salida .= '<p class="card-text">'.$fila['descripcion_producto'].'</p>';
-            $salida .= '<a href="../user/ddm.php?seccion=producto&id='.$id.'" class="btn btn-primary">Comprar</a>';
-            $salida .= '</div>';
+            $salida .= '<a href="../user/ddm.php?seccion=producto&data='.$id.'" class="btn btn-primary">Comprar</a>';
+            $salida .= '</h5>';
             $salida .= '</div>';
             $salida .= '</div>';
             $salida .= '<br><br>';
@@ -64,4 +65,46 @@ class Vista{
         $salida .= "</div>"; // Cierra el contenedor de tabla responsiva
         return $salida;
     }
+    /**
+     * Metodo para visualizar la lista de productos
+     */
+    public static function ContenidoProducto($id){
+        include_once("modelo.php");
+        include_once("../../cajon/bootstrap/bootstrap.php");
+        $salida = "";
+        $consulta = Model::sqlverificarProducto($id,"mostrar");
+        while($fila = $consulta->fetch_array()){
+            $salida .= $fila[1]."<br>";
+            $salida .= $fila[2]."<br>";
+            $salida .= $fila[3]."<br>";
+            $salida .= $fila[4]."<br>";
+            $salida .= $fila[5]."<br>";
+            $salida .= "<img src='{$fila[6]}'>"."<br>";
+            $salida .= $fila[7]."<br>";
+            $salida .= $fila[8]."<br>";
+            
+        }
+        return $salida;
+    }
+
+    /**
+     * Metodo para visuarliza los comentarios
+     */
+    public static function viewComentarios($id_pro,$id_user){
+        include_once("modelo.php");
+        $salida = "";
+        $consulta = Model::sqlViewComentarios($id_pro);
+        while($fila = $consulta->fetch_array()){
+            $salida .= $fila[0]."<br>";
+            $salida .= $fila[1]."<br>";
+            $salida .= $fila[2]."<br>";
+            if( $fila[3] == $id_user){
+                $salida.= "<a href='#'>Actailizar</a><br>";
+                $salida.= "<a href='#' onclick='eliminarComentario(\"$fila[4]\",\"$id_pro\")'>Eliminar</a><br>";
+            }
+            $salida .= "<a href='#'>Responder</a><br><br>";
+        }
+        return $salida;
+    }
+
 }    
