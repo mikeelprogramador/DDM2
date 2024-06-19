@@ -31,14 +31,14 @@ function eliminarComentario(id_comen, id_pro){
     $.ajax({
         data: param, 
         url: 'consultas.php',
-        datatype: 'texto',
+        datatype: 'text',
         method: 'post',
-        success: function(respuesta){
-           ( respuesta == "" ? $("#coment").html(respuesta): alert("No se a podido eliminar el comentario"));
-           console.log(respuesta);
+        success: function (respuesta){
+            ( respuesta != "" ? $("#coment").html(respuesta): alert("No has ingresado ningun comentario"));
+            //console.log(respuesta);
         },
-        error: function(xhr, status, error){
-            console.log(error)
+        error: function (xhr,status,error){
+            console.log(error);
         }
-    })
+    });
 }

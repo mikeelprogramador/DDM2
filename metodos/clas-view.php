@@ -99,10 +99,10 @@ class Vista{
             $salida .= $fila[1]."<br>";
             $salida .= $fila[2]."<br>";
             if( $fila[3] == $id_user){
-                $salida.= "<a href='#'>Actailizar</a><br>";
-                $salida.= "<a href='#' onclick='eliminarComentario(\"$fila[4]\",\"$id_pro\")'>Eliminar</a><br>";
+                $salida.= "<button>Editar</button><br>";
+                $salida.= "<button onclick='eliminarComentario(\"$fila[4]\",\"$id_pro\")'>Eliminar</button><br>";
             }
-            $salida .= "<a href='#'>Responder</a><br><br>";
+            $salida .= "<button>Responder</button><br><br>";
         }
         return $salida;
     }

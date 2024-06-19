@@ -14,10 +14,11 @@ if( isset($_POST['agregarComentario']) && $_POST['agregarComentario'] == true ){
 }
 if( isset($_POST['eliminarComentario']) && $_POST['eliminarComentario'] == true ){
     $id_comen = $_POST['comen'];
-    $id = id::desencriptar($_POST['data']);
-    if( Productos::eliminarComentarios($id_comen,$_SESSION['id']) == 1){
-        echo Vista::viewComentarios($id,$_SESSION['id']);
-    }
+    $id = $_POST['data'];  
+    if(  Productos::eliminarComentarios($id_comen,$_SESSION['id']) == 1){
+       echo Vista::viewComentarios($id, $_SESSION['id']);
 
-}
+    }    
+}   
+
 
