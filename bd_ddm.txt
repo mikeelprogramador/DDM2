@@ -1,0 +1,160 @@
+create schema bd_ddm;
+#drop schema bd_ddm;
+use bd_ddm;
+
+/*Tabla de los usuarios*/
+create table tb_usuarios(
+id int not null,
+nombre varchar(60) not null,
+apellido varchar(60) not null,
+email varchar(260) not null,
+pasword varchar(100) not null,
+fecha_registro varchar(50) not null,
+id_cate_user int not null,
+status_user varchar(10) null,
+foreign key(id_cate_user) references tb_cate_user(id_cate_user),
+primary key (id)
+);
+
+
+/*Tabla para los productos */
+create table tb_productos(
+id_producto varchar(10) not null,
+producto_nombre varchar(80) null,
+descripcion_producto varchar(160) null,
+caracteristicas_producto varchar(500) null,
+cantidades int null,
+id_ofertas int null,
+img varchar(200) null,
+precio varchar(200) null,
+color varchar(150) not null,
+primary key(id_producto)
+);
+
+
+/*
+SELECT * 
+FROM tb_productos 
+WHERE (producto_nombre LIKE '%cepillo%' OR descripcion_producto LIKE '%cepillo%') 
+AND (producto_nombre LIKE '%dientes%' OR descripcion_producto LIKE '%dientes%')
+AND (	;
+*/	
+
+	
+/* Categorias de la paguina*/
+create table tb_categorias(
+id_categoria int auto_increment not null,
+categoria varchar (150) not null,
+primary key(id_categoria)
+);
+
+
+
+/*Tabla para las categorias de los productos*/
+create table tb_categoriasProducto(
+id_p_c int auto_increment , 
+id_producto varchar(10) not null,
+id_categoria int not null,
+foreign key(id_producto) references tb_productos(id_producto),
+foreign key(id_categoria) references tb_categorias(id_categoria),
+primary key(id_p_c)
+);	
+
+/* Tabla de comentarios */
+create table tb_comentarios(
+id_comentario int auto_increment,
+comentario varchar(600) not null,
+fechaComentario varchar(20) not null,
+id_producto varchar(10) not null,
+id_usuario int not null,
+primary key(id_comentario),
+foreign key(id_producto) references tb_productos(id_producto),
+foreign key(id_usuario) references tb_usuarios(id)
+);
+
+
+/*Tbala de las valoraciones*/
+create table tb_valoracion(
+id_valoracion int not null,
+valoracion varchar(100) not null,
+primary key(id_valoracion)
+);
+
+create table tb_valoracionComentario(
+id_va_pro int auto_increment null,
+id_valoracion int not null,
+id_producto varchar(10) not null,
+id_usuario int not null,
+foreign key(id_valoracion) references tb_valoracion(id_valoracion),
+foreign key(id_producto) references tb_productos(id_producto),
+foreign key(id_usuario) references tb_usuarios(id),
+primary key(id_va_pro)
+);
+
+
+create table tb_cate_user(
+id_cate_user int not null,
+categoria varchar(100) not null,
+primary key(id_cate_user)
+);
+ select nombre from tb_usuarios where id = '1';
+
+
+/*Select*/
+select * from tb_usuarios ;
+select * from tb_productos;
+select * from tb_categorias;
+select * from tb_categoriasProducto;
+select * from tb_comentarios;	
+select * from tb_valoracion;
+select * from tb_valoracionComentario;
+select * from tb_cate_user;
+	
+
+/*borrar datos de las tablas*/
+truncate tb_usuarios ;	
+truncate tb_productos;
+truncate tb_categorias;
+truncate tb_categoriasProducto;
+truncate tb_comentarios;
+
+
+/*borrar tablas*/
+#drop table tb_usuarios; 
+#drop table tb_categoriasProducto; 
+#drop table tb_productos;
+#drop table tb_comentarios; 
+#drop table tb_valoracion; 
+
+/*Consultas */
+select *  
+from tb_categoriasProducto as t1
+inner join tb_productos as t2 on t1.id_producto = t2.id_producto
+inner join tb_categorias as t3 on t1.id_categoria = t3.id_categoria;
+
+
+select (select cater_user from tb_usuarios where email = '' and pasword = '' ), count(*) from tb_usuarios;
+
+set sql_safe_updates = 1;
+
+select tb_usuarios.nombre,comentario,fechaComentario from tb_comentarios 
+inner join tb_usuarios on tb_comentarios.id_usuario = tb_usuarios.id
+where id_usuario = 'fku6';
+
+select tb_usuarios.nombre,comentario,fechaComentario from tb_comentarios
+inner join tb_usuarios on tb_comentarios.id_usuario = tb_usuarios.id
+inner join tb_productos on tb_comentarios.id_producto = tb_productos.id_producto
+where tb_productos.id_producto = 'FKT5' ;
+
+
+#insert into tb_megusta(id_producto)values('fku6');
+
+select t1.id_producto,img,producto_nombre,precio,descripcion_producto 
+from tb_productos as t1 
+inner join tb_categoriasProducto as t2 on t1.id_producto = t2.id_producto 
+inner join tb_categorias as t3 on t2.id_categoria = t3.id_Categoria
+ where t3.categoria = 'electrodomesticos';
+ 
+ select * from tb_categoriasProducto;
+ truncate  tb_categoriasProducto;
+ 
