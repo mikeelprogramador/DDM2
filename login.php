@@ -1,5 +1,5 @@
 <?php
-if( !isset($_SESSION))session_start();
+if( !isset($_SESSION))session_start();//crea sesion de start
 if( !isset($_SESSION['stop']))$_SESSION['stop'] = 0;
 if(isset($_GET['men'])){
   if( $_GET['men'] == "error-1" || $_GET['men'] == "error-0" ){
@@ -7,14 +7,16 @@ if(isset($_GET['men'])){
     window.onload = function() {
     verificacion('<?php echo $_GET['men']; ?>');
     };</script><?php
+    //Restricion de error
     if($_SESSION['stop'] != 3)$_SESSION['stop'] += 1;
   }
 }
+//reiniciar la sesion
 if(isset($_GET['reset'])){
   $_SESSION['stop'] = 0;
   header("location: index.php");
 }
- 
+//alerta de verificacion
 if($_SESSION['stop'] > 2){
   ?><script> 
     window.onload = function() {
